@@ -4,3 +4,6 @@ from django.shortcuts import redirect, render
 def BASE(request):
     # print(rr,2222222222222)
     return render(request, 'base.html')
+
+def LOGIN(request):
+    return render(request, 'login.html')
