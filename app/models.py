@@ -1,13 +1,12 @@
 from django.db import models
-
-# Create your models here.
 from django.contrib.auth.models import AbstractUser
 
+# Create your models here.
 class CustomUser(AbstractUser):
     USER = (
         (1, 'HOD'),
         (2, 'STAFF'),
-        (3, 'STUDENT')
+        (3, 'STUDENT'),
     )
 
     user_type = models.CharField(choices=USER, max_length=50, default=1)

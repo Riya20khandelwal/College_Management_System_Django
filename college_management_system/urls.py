@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .import views, Hod_views, Staff_views, Student_views
+from .import views, Hod_Views, Staff_Views, Student_Views
 
 urlpatterns = [
     path('admin/', admin.site.urls),

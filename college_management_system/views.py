@@ -1,10 +1,9 @@
-from django.shortcuts import redirect, render
-from student.EmailBackEnd import EmailBackEnd
+from django.shortcuts import redirect, render, HttpResponse
+from app.EmailBackend import EmailBackEnd
 from django.contrib.auth import authenticate, login, logout
-# from .settings import BASE_DIR, rr
+from django.contrib import messages
 
 def BASE(request):
-    # print(rr,2222222222222)
     return render(request, 'base.html')
 
 def LOGIN(request):
@@ -12,7 +11,21 @@ def LOGIN(request):
 
 def doLogin(request):
     if request.method == "POST":
-        user = EmailBackEnd.authenticate(request,
-                                         username=request.POST.get('email'),
-                                         )
-        return None
+        user = EmailBackEnd.authenticate(request,   username=request.POST.get('email'), 
+        password=request.POST.get('password'),)
+        
+        if user != None:
+            login(request, user)
+            user_type = user.user_type
+            if user_type == '1':
+                return HttpResponse('this is hod panel')
+            elif user_type == '2':
+                return HttpResponse('this is staff panel')
+            elif user_type == '3':
+                return HttpResponse('this is student panel')
+            else:
+                messages.error(request, 'Email and Password Are Invalid!')
+                return redirect('login')
+        else:
+            messages.error(request, 'Email and Password Are Invalid!')
+            return redirect('login')
