@@ -29,6 +29,10 @@ urlpatterns = [
     path('doLogin', views.doLogin, name='doLogin'),
     path('doLogout', views.doLogout, name='logout'),
 
+    # Profile Update
+    path('profile', views.PROFILE, name="profile"),
+    path('profile/update', views.PROFILE_UPDATE, name="profile_update"),
+
     # This is Hod Panel url
     path('Hod/Home', Hod_Views.HOME, name='hod_home'),
 

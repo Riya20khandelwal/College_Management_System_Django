@@ -22,9 +22,13 @@
          {% include "includes/sidebar.html" %}
          
          <div class="page-wrapper">
+            <div class="content container-fluid">
+            {% block content %}
+              
+            {% endblock content %}
 
          {% include "includes/footer.html" %}
-            
+            </div>
          </div>
       </div>
       <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
