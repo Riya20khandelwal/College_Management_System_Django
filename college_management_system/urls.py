@@ -36,6 +36,7 @@ urlpatterns = [
     # This is Hod Panel url
     path('Hod/Home', Hod_Views.HOME, name='hod_home'),
     path('Hod/Student/Add', Hod_Views.ADD_STUDENT, name='add_student'),
+    path('Hod/Student/View', Hod_Views.VIEW_STUDENT, name='view_student'),
 
 
 

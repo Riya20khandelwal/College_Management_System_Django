@@ -62,3 +62,12 @@ def ADD_STUDENT(request):
         'session_year': session_year,
     }
     return render(request, 'Hod/add_student.html', context)
+
+@login_required(login_url='/')
+def VIEW_STUDENT(request):
+    students  = Student.objects.all()
+
+    context = {
+        'students': students,
+    }
+    return render(request, 'Hod/view_student.html', context)
