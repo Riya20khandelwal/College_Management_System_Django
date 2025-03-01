@@ -25,6 +25,9 @@ class Session_Year(models.Model):
     session_start = models.CharField(max_length=100)
     session_end = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.session_start + " to " + self.session_end
+
 class Student(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     address = models.TextField()
