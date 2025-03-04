@@ -42,6 +42,7 @@ urlpatterns = [
     path('Hod/Student/Delete/<str:admin>', Hod_Views.DELETE_STUDENT, name='delete_student'),
 
     path('Hod/Course/Add', Hod_Views.ADD_COURSE, name='add_course'),
+    path('Hod/Course/View', Hod_Views.VIEW_COURSE, name='view_course'),
 
 
 

@@ -154,3 +154,10 @@ def ADD_COURSE(request):
         messages.success(request, "Course are successfully created.")
         return redirect('add_course')
     return render(request, "Hod/add_course.html")
+
+def VIEW_COURSE(request):
+    courses = Course.objects.all()
+    context = {
+        'courses' : courses
+    }
+    return render(request, "Hod/view_course.html", context)
