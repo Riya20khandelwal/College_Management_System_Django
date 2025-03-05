@@ -6,10 +6,10 @@
     <div class="page-header">
        <div class="row align-items-center">
           <div class="col">
-             <h3 class="page-title">Staff</h3>
+             <h3 class="page-title">Subject</h3>
              <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item active">Staff</li>
+                <li class="breadcrumb-item active">Subject</li>
              </ul>
           </div>
           <div class="col-auto text-right float-right ml-auto">
@@ -28,36 +28,29 @@
                       <thead>
                          <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Gender</th>
-                            <th>Address</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
+                            <th>Subject Name</th>
+                            <th>Course</th>
+                            <th>Staff</th>
+                            <th>Created_at</th>
+                            <th>Updated_at</th>
                             <th class="text-right">Action</th>
                          </tr>
                       </thead>
                       <tbody>
-                        {% for s in staff %}
+                        {% for s in subject %}
                          <tr>
                             <td>{{ s.id }}</td>
-                            <td>
-                               <h2 class="table-avatar">
-                                  <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="/{{ s.admin.profile_pic }}" alt="User Image"></a>
-                                  <a href="student-details.html">{{ s.admin.first_name }} {{ s.admin.last_name }}</a>
-                               </h2>
-                            </td>
-                            <td>{{ s.admin.email }}</td>
-                            <td>{{ s.gender }}</td>
-                            <td>{{ s.address }}</td>
+                            <td>{{ s.name }}</td>
+                            <td>{{ s.course }}</td>
+                            <td>{{ s.staff.admin.first_name }}&nbsp;{{ s.staff.admin.last_name }}</td>
                             <td>{{ s.created_at }}</td>
                             <td>{{ s.updated_at }}</td>
                             <td class="text-right">
                                <div class="actions">
-                                  <a href="{% url 'edit_staff' s.id %}" class="btn btn-sm bg-success-light mr-2">
+                                  <a href="{% url 'edit_subject' s.id %}" class="btn btn-sm bg-success-light mr-2">
                                   <i class="fas fa-pen"></i>
                                   </a>
-                                  <a href="{% url 'delete_staff' s.admin.id %}" class="btn btn-sm bg-danger-light">
+                                  <a href="{% url 'delete_subject' s.id %}" class="btn btn-sm bg-danger-light">
                                   <i class="fas fa-trash"></i>
                                   </a>
                                </div>
