@@ -12,6 +12,9 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(choices=USER, max_length=50, default=1)
     profile_pic = models.ImageField(upload_to='media/profile_pic')
 
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
@@ -39,6 +42,7 @@ class Student(models.Model):
 
     def __str__(self):
         return self.admin.first_name + " " + self.admin.last_name
+    
 
 class Staff(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
@@ -60,3 +64,13 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Staff_Notification(models.Model):
+    staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.staff_id.admin.full_name()
