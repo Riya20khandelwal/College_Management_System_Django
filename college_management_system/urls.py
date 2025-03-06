@@ -66,6 +66,9 @@ urlpatterns = [
     path('Hod/Session/Update', Hod_Views.UPDATE_SESSION, name='update_session'),
     path('Hod/Session/Delete/<str:id>', Hod_Views.DELETE_SESSION, name='delete_session'),
 
+        
+    # This is Staff urls
+    path('Staff/Home', Staff_Views.HOME, name='staff_home'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
