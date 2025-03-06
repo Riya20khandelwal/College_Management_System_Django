@@ -66,6 +66,9 @@ urlpatterns = [
     path('Hod/Session/Update', Hod_Views.UPDATE_SESSION, name='update_session'),
     path('Hod/Session/Delete/<str:id>', Hod_Views.DELETE_SESSION, name='delete_session'),
 
+    path('Hod/Staff/Send_Notification', Hod_Views.STAFF_SEND_NOTIFICATION, name="staff_send_notification"),
+    path('Hod/Staff/Save_Notification', Hod_Views.SAVE_STAFF_NOTIFICATION, name="save_staff_notification"),
+
         
     # This is Staff urls
     path('Staff/Home', Staff_Views.HOME, name='staff_home'),

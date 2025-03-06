@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from app.models import Course, Session_Year, Student, CustomUser, Staff, Subject
+from app.models import Course, Session_Year, Student, CustomUser, Staff, Subject, Staff_Notification
 from django.contrib import messages
 
 @login_required(login_url='/')
@@ -473,3 +473,32 @@ def DELETE_SESSION(request, id):
     session.delete()
     messages.success(request, "Session deleted successfully.")
     return redirect('view_session')
+
+
+@login_required(login_url='/')
+def STAFF_SEND_NOTIFICATION(request):
+    staff = Staff.objects.all()
+    see_notification = Staff_Notification.objects.all().order_by('-id')[:5]
+
+    context = {
+        'staff': staff,
+        'see_notification': see_notification,
+    }
+    return render(request, 'Hod/send_staff_notification.html', context)
+
+@login_required(login_url='/')
+def SAVE_STAFF_NOTIFICATION(request):
+    if request.method == "POST":
+        staff_id = request.POST.get('staff_id')
+        message = request.POST.get('message')
+
+        staff = Staff.objects.get(admin=staff_id)
+        notification = Staff_Notification(
+            staff_id = staff,
+            message = message,
+        )
+        notification.save()
+        messages.success(request, 'Notification Send Successfully!')
+        return redirect('staff_send_notification')
+    
+    return None
