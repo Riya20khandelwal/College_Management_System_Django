@@ -71,30 +71,28 @@
                                 <table id="table_id" class="table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Created_at</th>
-                                            <th>Updated_at</th>
-                                            <th class="text-right">Action</th>
+                                            <th>Date</th>
+                                            <th>Message</th>
+                                            <th class="text-right">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for c in courses %}
+                                        {% for s in staff_leave_history %}
                                         <tr>
-                                            <td>{{ c.id }}</td>
-                                            <td>{{ c.name }}</td>
-                                            <td>{{ c.created_at }}</td>
-                                            <td>{{ c.updated_at }}</td>
+                                            <td>{{ s.date }}</td>
+                                            <td>{{ s.message }}</td>
                                             <td class="text-right">
                                                 <div class="actions">
-                                                    <a href="{% url 'edit_course' c.id %}"
-                                                        class="btn btn-sm bg-success-light mr-2">
-                                                        <i class="fas fa-pen"></i>
-                                                    </a>
-                                                    <a href="{% url 'delete_course' c.id %}"
-                                                        class="btn btn-sm bg-danger-light">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
+                                                   {% if s.status == 0 %}
+                                                   <span class="badge badge-info">Pending</span>
+
+                                                   {% elif s.status == 1 %}
+                                                   <span class="badge badge-success">Accepted</span>
+
+                                                   {% else %}
+                                                   <span class="badge badge-danger">Rejected</span>
+                                                     
+                                                   {% endif %}
                                                 </div>
                                             </td>
                                         </tr>
