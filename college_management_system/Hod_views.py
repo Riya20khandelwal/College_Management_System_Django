@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from app.models import Course, Session_Year, Student, CustomUser, Staff, Subject, Staff_Notification, Staff_leave
+from app.models import Course, Session_Year, Student, CustomUser, Staff, Subject, Staff_Notification, Staff_leave, Staff_feedback
 from django.contrib import messages
 
 @login_required(login_url='/')
