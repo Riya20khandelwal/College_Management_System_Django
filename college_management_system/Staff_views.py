@@ -58,3 +58,36 @@ def STAFF_APPLY_LEAVE_SAVE(request):
         return redirect('staff_apply_leave')
 
     return render(request, 'Staff/apply_leave.html')
+
+
+@login_required(login_url='/')
+def STAFF_FEEDBACK(request):
+    staff = Staff.objects.get(admin=request.user.id)
+
+    feedback_history = Staff_feedback.objects.filter(staff_id = staff)
+
+    context = {
+        'feedback_history': feedback_history,
+    }
+    return render(request, 'Staff/feedback.html', context)
+
+
+@login_required(login_url='/')
+def STAFF_FEEDBACK_SAVE(request):
+    if request.method == "POST":
+        feedback_message = request.POST.get('feedback')
+
+        staff = Staff.objects.get(admin=request.user.id)
+
+        feedback = Staff_feedback(
+            staff_id = staff,
+            feedback = feedback_message,
+            feedback_reply = '',
+        )
+        feedback.save()
+        messages.success(request, 'Feedback Successfully Send.')
+        return redirect('staff_feedback')
+
+
+    return render(request, 'Staff/feedback.html')
+  

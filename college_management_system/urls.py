@@ -82,4 +82,8 @@ urlpatterns = [
     path('Staff/Apply_leave', Staff_Views.STAFF_APPLY_LEAVE, name='staff_apply_leave'),
     path('Staff/Apply_leave_save', Staff_Views.STAFF_APPLY_LEAVE_SAVE, name='staff_apply_leave_save'),
 
+    path('Staff/Feedback', Staff_Views.STAFF_FEEDBACK, name='staff_feedback'),
+    path('Staff/Feedback/Save', Staff_Views.STAFF_FEEDBACK_SAVE, name='staff_feedback_save'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
