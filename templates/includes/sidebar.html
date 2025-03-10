@@ -59,7 +59,7 @@
                <a href="{% url 'staff_send_notification' %}"><i class="fa fa-bell"></i> <span>Send Staff Notification</span></a>
             </li>
             <li>
-               <a href="holiday.html"><i class="fa fa-bell"></i> <span>Send Student Notification</span></a>
+               <a href="{% url 'student_send_notification' %}"><i class="fa fa-bell"></i> <span>Send Student Notification</span></a>
             </li>
             <li>
                <a href="holiday.html"><i class="fa fa-calendar"></i> <span>View Attendance</span></a>
@@ -135,8 +135,8 @@
          <li class="{% active_link 'staff_feedback' 'active' %}">
             <a href="{% url 'staff_feedback' %}"><i class="fas fa-comment"></i> <span>Send Feedback</span></a>
          </li>
-         <li class="{% active_link 'staff_notifications' 'active' %}">
-            <a href="{% url 'staff_notifications' %}"><i class="fas fa-bell"></i> <span>Notifications</span></a>
+         <li class="{% active_link 'student_notifications' 'active' %}">
+            <a href="{% url 'student_notifications' %}"><i class="fas fa-bell"></i> <span>Notifications</span></a>
          </li>
                    
            <li>
