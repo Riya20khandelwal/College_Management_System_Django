@@ -94,6 +94,7 @@ class Staff_feedback(models.Model):
     feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(default=0)
 
     def __str__(self):
         return self.staff_id.admin.full_name()
@@ -104,6 +105,17 @@ class Student_Notification(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(null=True, default=0)
 
+
+    def __str__(self):
+        return self.student_id.admin.full_name()
+    
+class Student_feedback(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    feedback = models.TextField()
+    feedback_reply = models.TextField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(default=0)
 
     def __str__(self):
         return self.student_id.admin.full_name()

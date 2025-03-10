@@ -80,6 +80,9 @@ urlpatterns = [
     path('Hod/Student/Send_Notification', Hod_Views.STUDENT_SEND_NOTIFICATION, name="student_send_notification"),
     path('Hod/Student/Save_Notification', Hod_Views.SAVE_STUDENT_NOTIFICATION, name="save_student_notification"),
 
+    path('Hod/Student/feedback_reply/', Hod_Views.STUDENT_FEEDBACK_REPLY, name="student_feedback_reply"),
+    path('Hod/Student/feedback_reply/save', Hod_Views.STUDENT_FEEDBACK_REPLY_SAVE, name="student_feedback_reply_save"),
+
         
     # This is Staff urls
     path('Staff/Home', Staff_Views.HOME, name='staff_home'),
@@ -97,6 +100,9 @@ urlpatterns = [
 
     path('Student/Notifications', Student_Views.NOTIFICATIONS, name='student_notifications'),
     path('Student/mark_as_done/<str:status>', Student_Views.STUDENT_NOTIFICATION_MARK_AS_DONE, name='student_notification_mark_as_done'),
+
+    path('Student/Feedback', Student_Views.STUDENT_FEEDBACK, name='student_feedback'),
+    path('Student/Feedback/Save', Student_Views.STUDENT_FEEDBACK_SAVE, name='student_feedback_save'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

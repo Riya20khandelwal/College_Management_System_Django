@@ -7,15 +7,15 @@
 <div class="page-header">
     <div class="row align-items-center">
        <div class="col">
-          <h3 class="page-title">Staff Feedback</h3>
+          <h3 class="page-title">Student Feedback</h3>
           <ul class="breadcrumb">
              <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-             <li class="breadcrumb-item active">Staff Feedback</li>
+             <li class="breadcrumb-item active">Student Feedback</li>
           </ul>
        </div>
        <div class="col-auto text-right float-right ml-auto">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            View All Staff Feedbacks
+            View All Student Feedbacks
           </button>
        </div>
     </div>
@@ -30,7 +30,7 @@
                    <thead>
                       <tr>
                          <th>ID</th>
-                         <th>Staff Name</th>
+                         <th>Student Name</th>
                          <th>Feedback</th>
                          <th>Date</th>
                          <th class="text-right">Reply</th>
@@ -42,8 +42,11 @@
                          <td>{{ f.id }}</td>
                          <td>
                             <h2 class="table-avatar">
-                               <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="/{{ f.staff_id.admin.profile_pic }}" alt="User Image"></a>
-                               <a href="student-details.html">{{ f.staff_id.admin.first_name }} {{ f.staff_id.admin.last_name }}</a>
+                                {% if f.student_id.admin.profile_pic %}
+                                <a href="" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="/{{ f.student_id.admin.profile_pic }}" alt="User Image"></a>
+                                {% endif %}
+                               
+                               <a href="">{{ f.student_id.admin.first_name }} {{ f.student_id.admin.last_name }}</a>
                             </h2>
                          </td>
                          <td>{{ f.feedback }}</td>
@@ -126,13 +129,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle1">Reply to {{i.staff_id.admin.first_name}}&nbsp;{{i.staff_id.admin.last_name}}</h5>
+          <h5 class="modal-title" id="exampleModalCenterTitle1">Reply to {{i.student_id.admin.first_name}}&nbsp;{{i.student_id.admin.last_name}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form action="{% url 'staff_feedback_reply_save' %}" method="post">
+            <form action="{% url 'student_feedback_reply_save' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
 
