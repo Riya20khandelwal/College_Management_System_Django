@@ -83,12 +83,17 @@ urlpatterns = [
     path('Hod/Student/feedback_reply/', Hod_Views.STUDENT_FEEDBACK_REPLY, name="student_feedback_reply"),
     path('Hod/Student/feedback_reply/save', Hod_Views.STUDENT_FEEDBACK_REPLY_SAVE, name="student_feedback_reply_save"),
 
+    path('Hod/Student/Leave_view', Hod_Views.STUDENT_LEAVE_VIEW, name="student_leave_view"),
+    path('Hod/Student/approve_leave/<str:id>', Hod_Views.STUDENT_APPROVE_LEAVE, name="student_approve_leave"),
+    path('Hod/Student/disapprove_leave/<str:id>', Hod_Views.STUDENT_DISAPPROVE_LEAVE, name="student_disapprove_leave"),
+
         
     # This is Staff urls
     path('Staff/Home', Staff_Views.HOME, name='staff_home'),
     
     path('Staff/Notifications', Staff_Views.NOTIFICATIONS, name='staff_notifications'),
     path('Staff/mark_as_done/<str:status>', Staff_Views.STAFF_NOTIFICATION_MARK_AS_DONE, name='staff_notification_mark_as_done'),
+
     path('Staff/Apply_leave', Staff_Views.STAFF_APPLY_LEAVE, name='staff_apply_leave'),
     path('Staff/Apply_leave_save', Staff_Views.STAFF_APPLY_LEAVE_SAVE, name='staff_apply_leave_save'),
 
@@ -103,6 +108,9 @@ urlpatterns = [
 
     path('Student/Feedback', Student_Views.STUDENT_FEEDBACK, name='student_feedback'),
     path('Student/Feedback/Save', Student_Views.STUDENT_FEEDBACK_SAVE, name='student_feedback_save'),
+
+    path('Student/Apply_leave', Student_Views.STUDENT_APPLY_LEAVE, name='student_apply_leave'),
+    path('Student/Apply_leave_save', Student_Views.STUDENT_APPLY_LEAVE_SAVE, name='student_apply_leave_save'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
