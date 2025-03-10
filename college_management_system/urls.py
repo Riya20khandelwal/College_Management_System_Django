@@ -88,5 +88,8 @@ urlpatterns = [
     path('Staff/Feedback', Staff_Views.STAFF_FEEDBACK, name='staff_feedback'),
     path('Staff/Feedback/Save', Staff_Views.STAFF_FEEDBACK_SAVE, name='staff_feedback_save'),
 
+    # This is Student urls
+    path('Student/Home', Student_Views.HOME, name='student_home'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
