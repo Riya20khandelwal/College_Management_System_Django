@@ -87,6 +87,8 @@ urlpatterns = [
     path('Hod/Student/approve_leave/<str:id>', Hod_Views.STUDENT_APPROVE_LEAVE, name="student_approve_leave"),
     path('Hod/Student/disapprove_leave/<str:id>', Hod_Views.STUDENT_DISAPPROVE_LEAVE, name="student_disapprove_leave"),
 
+    path('Hod/View/Attendance', Hod_Views.VIEW_ATTENDANCE, name="view_attendance"),
+
         
     # This is Staff urls
     path('Staff/Home', Staff_Views.HOME, name='staff_home'),

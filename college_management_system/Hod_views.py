@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from app.models import Course, Session_Year, Student, CustomUser, Staff, Subject, Staff_Notification, Staff_leave, Staff_feedback, Student_Notification, Student_feedback, Student_leave
+from app.models import Course, Session_Year, Student, CustomUser, Staff, Subject, Staff_Notification, Staff_leave, Staff_feedback, Student_Notification, Student_feedback, Student_leave, Attendance, Attendance_Report
 from django.contrib import messages
 
 @login_required(login_url='/')
@@ -632,3 +632,42 @@ def STUDENT_DISAPPROVE_LEAVE(request, id):
     leave.status = 2
     leave.save()
     return redirect('student_leave_view')
+
+
+@login_required(login_url='/')
+def VIEW_ATTENDANCE(request):
+    subject = Subject.objects.all()
+    session_year = Session_Year.objects.all()
+
+    action = request.GET.get('action')
+
+    get_subject = None
+    get_session_year = None
+    students = None
+    attendance_date = None
+    attendance_report = None
+    if action is not None:
+        if request.method == "POST":
+            subject_id = request.POST.get('subject_id')
+            session_year_id = request.POST.get('session_year_id')
+            attendance_date = request.POST.get('attendance_date')
+
+            get_subject = Subject.objects.get(id=subject_id)
+            get_session_year = Session_Year.objects.get(id=session_year_id)
+
+            attendance = Attendance.objects.filter(subject_id=get_subject, attendance_date=attendance_date, session_year_id=get_session_year)
+            for i in attendance:
+                attendance_id = i.id
+                attendance_report = Attendance_Report.objects.filter(attendance_id=attendance_id)
+
+    context = {
+        'subject': subject,
+        'session_year': session_year,
+        'action': action,
+        'get_subject': get_subject,
+        'get_session_year': get_session_year,
+        'attendance_date': attendance_date,
+        'attendance_report': attendance_report,
+        # 'students': students,
+    }
+    return render(request, 'Hod/view_attendance.html', context)
