@@ -103,7 +103,6 @@ urlpatterns = [
     path('Staff/Take_attendance', Staff_Views.STAFF_TAKE_ATTENDANCE, name='staff_take_attendance'),
     path('Staff/Save_attendance', Staff_Views.STAFF_SAVE_ATTENDANCE, name='staff_save_attendance'),
     path('Staff/View_attendance', Staff_Views.STAFF_VIEW_ATTENDANCE, name='staff_view_attendance'),
-    # path('Staff/Save_attendance', Staff_Views.STAFF_SAVE_ATTENDANCE, name='staff_save_attendance'),
 
     # This is Student urls
     path('Student/Home', Student_Views.HOME, name='student_home'),
@@ -116,6 +115,8 @@ urlpatterns = [
 
     path('Student/Apply_leave', Student_Views.STUDENT_APPLY_LEAVE, name='student_apply_leave'),
     path('Student/Apply_leave_save', Student_Views.STUDENT_APPLY_LEAVE_SAVE, name='student_apply_leave_save'),
+
+    path('Student/View_Attendance', Student_Views.STUDENT_VIEW_ATTENDANCE, name='student_view_attendance'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
