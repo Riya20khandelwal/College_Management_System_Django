@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from app.models import Staff, Staff_Notification, CustomUser, Staff_leave, Staff_feedback, Attendance, Attendance_Report, Subject, Session_Year, Student
+from app.models import Staff, Staff_Notification, CustomUser, Staff_leave, Staff_feedback, Attendance, Attendance_Report, Subject, Session_Year, Student, StudentResult
 from django.contrib import messages
 
 
@@ -171,7 +171,6 @@ def STAFF_VIEW_ATTENDANCE(request):
 
     get_subject = None
     get_session_year = None
-    students = None
     attendance_date = None
     attendance_report = None
     if action is not None:
@@ -196,6 +195,75 @@ def STAFF_VIEW_ATTENDANCE(request):
         'get_session_year': get_session_year,
         'attendance_date': attendance_date,
         'attendance_report': attendance_report,
-        # 'students': students,
     }
     return render(request, 'Staff/view_attendance.html', context)
+
+
+
+@login_required(login_url='/')
+def STAFF_ADD_RESULT(request):
+    staff = Staff.objects.get(admin=request.user.id)
+
+    subjects = Subject.objects.filter(staff_id=staff)
+    session_year = Session_Year.objects.all()
+
+    action = request.GET.get('action')
+
+    get_subject = None
+    get_session = None
+    students = None
+    if action is not None:
+        if request.method == "POST":
+            subject_id = request.POST.get('subject_id')
+            session_year_id = request.POST.get('session_year_id')
+
+            get_subject = Subject.objects.get(id=subject_id)
+            get_session = Session_Year.objects.get(id=session_year_id)
+            
+
+            subjects = Subject.objects.filter(id=subject_id)
+            for i in subjects:
+                student_id = i.course.id
+                students = Student.objects.filter(id=student_id)
+
+
+
+    context = {
+        'subjects': subjects,
+        'session_year': session_year,
+        'action': action,
+        'get_subject': get_subject,
+        'get_session': get_session,
+        'students': students,
+    }
+    return render(request, 'Staff/add_result.html', context)
+
+def STAFF_SAVE_RESULT(request):
+    if request.method == 'POST':
+        subject_id = request.POST.get('subject_id')
+        session_year_id = request.POST.get('session_year_id')
+        student_id = request.POST.get('student_id')
+        assignment_mark = request.POST.get('assignment_mark')
+        exam_mark = request.POST.get('exam_mark')
+
+        get_student = Student.objects.get(admin=student_id)
+        get_subject = Subject.objects.get(id=subject_id)
+
+        check_exists = StudentResult.objects.filter(subject_id=get_subject, student_id=get_student).exists()
+        if check_exists:
+            result = StudentResult.objects.get(subject_id=get_subject, student_id=get_student)
+            result.assignment_mark = assignment_mark
+            result.exam_mark = exam_mark
+            result.save()
+            messages.success(request, 'Result Added!')
+            return redirect('staff_add_result')
+        else:
+            result = StudentResult(
+                student_id = get_student,
+                subject_id = get_subject,
+                assignment_mark = assignment_mark,
+                exam_mark = exam_mark
+            )
+            result.save()
+            messages.success(request, 'Result Added!')
+            return redirect('staff_add_result')
