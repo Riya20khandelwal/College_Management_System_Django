@@ -1,0 +1,6 @@
+asgiref==3.8.1
+Django==3.2
+django-active-link==0.2.2
+pillow==11.1.0
+pytz==2025.1
+sqlparse==0.5.3

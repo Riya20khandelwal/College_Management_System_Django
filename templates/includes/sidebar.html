@@ -8,14 +8,6 @@
              <li class="menu-title">
                 <span>Main Menu</span>
              </li>
-             <!-- <li class="submenu active">
-                <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
-                <ul>
-                   <li><a href="index.html" class="active">Admin Dashboard</a></li>
-                   <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
-                   <li><a href="student-dashboard.html">Student Dashboard</a></li>
-                </ul>
-             </li> -->
              <li class="{% active_link 'hod_home' 'active' %}">
                <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
             </li>
@@ -55,25 +47,25 @@
                   <li><a href="{% url 'view_session' %}">View Session</a></li>
                </ul>
             </li>
-            <li>
+            <li class="{% active_link 'staff_send_notification' 'active' %}">
                <a href="{% url 'staff_send_notification' %}"><i class="fa fa-bell"></i> <span>Send Staff Notification</span></a>
             </li>
-            <li>
+            <li class="{% active_link 'student_send_notification' 'active' %}">
                <a href="{% url 'student_send_notification' %}"><i class="fa fa-bell"></i> <span>Send Student Notification</span></a>
             </li>
-            <li>
+            <li class="{% active_link 'view_attendance' 'active' %}">
                <a href="{% url 'view_attendance' %}"><i class="fa fa-calendar"></i> <span>View Attendance</span></a>
             </li>
-            <li>
+            <li class="{% active_link 'staff_feedback_reply' 'active' %}">
                <a href="{% url 'staff_feedback_reply' %}"><i class="fas fa-comments"></i> <span>Staff Feedback</span></a>
             </li>
-            <li>
+            <li class="{% active_link 'student_feedback_reply' 'active' %}">
                <a href="{% url 'student_feedback_reply' %}"><i class="fas fa-comments"></i> <span>Student Feedback</span></a>
             </li>
-            <li>
+            <li class="{% active_link 'staff_leave_view' 'active' %}">
                <a href="{% url 'staff_leave_view' %}"><i class="fas fa-envelope"></i> <span>Staff Leave</span></a>
             </li>
-            <li>
+            <li class="{% active_link 'student_leave_view' 'active' %}">
                <a href="{% url 'student_leave_view' %}"><i class="fas fa-envelope"></i> <span>Student Leave</span></a>
             </li>        
             <li>
