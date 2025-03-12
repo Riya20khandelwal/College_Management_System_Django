@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from app.models import Student, Student_Notification, Student_leave, Student_feedback, Attendance, Attendance_Report, Session_Year, Subject
+from app.models import Student, Student_Notification, Student_leave, Student_feedback, Attendance, Attendance_Report, Subject, StudentResult
 from django.contrib import messages
 
 
@@ -111,3 +111,20 @@ def STUDENT_VIEW_ATTENDANCE(request):
         'attendance_report': attendance_report,
     }
     return render(request, 'Student/view_attendance.html', context)
+
+def VIEW_RESULT(request):
+    student = Student.objects.get(admin=request.user.id)
+    result = StudentResult.objects.filter(student_id=student)
+
+    mark = None
+    for i in result:
+        assignment_mark = i.assignment_mark
+        exam_mark = i.exam_mark
+
+        mark = assignment_mark + exam_mark
+
+    context = {
+        'result': result, 
+        'mark': mark,
+    }
+    return render(request, 'Student/view_result.html', context)

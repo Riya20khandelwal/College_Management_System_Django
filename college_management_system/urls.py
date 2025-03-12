@@ -123,5 +123,7 @@ urlpatterns = [
 
     path('Student/View_Attendance', Student_Views.STUDENT_VIEW_ATTENDANCE, name='student_view_attendance'),
 
+    path('Student/View_Result', Student_Views.VIEW_RESULT, name='student_view_result'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
